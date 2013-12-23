@@ -37,9 +37,9 @@ var viewTwo = Backbone.View.extend({
   }
 });
 
-
 var viewThree = Backbone.View.extend({
   initialize: function(){
+    this.model = new Backbone.Model(JSON.parse(someJson));
     this.model.on('change', this.render, this);
   },
 
@@ -54,6 +54,7 @@ var viewThree = Backbone.View.extend({
 
 var viewFour = Backbone.View.extend({
   initialize: function(){
+    this.model = new Backbone.Model(JSON.parse(someJson));
     this.model.on('change', this.render, this);
   },
 
@@ -61,41 +62,40 @@ var viewFour = Backbone.View.extend({
     var html = _.template($("#character").html(), this.model.toJSON());
 
     $('.main').html(html);
-    
+
     return this;
   }
 
 });
 
 var viewFive = Backbone.View.extend({
+  el: '.main',
+
   events: {
     "click #showDetails": "showDetails",
     "click .main": "blah"
   },
 
   initialize: function(){
-    _.bindAll(this, 'showDetails');             
+   this.model = new Backbone.Model(JSON.parse(someJson));
   },
 
   render: function(){
     var html = _.template($("#details").html(), this.model.toJSON());
-
     $('.main').append(html);
-    
     return this;
   },
 
   blah: function() { alert('blah'); },
 
   showDetails: function(){
-    alert('showDetails');
     this.$el.find('#occupation').text(this.model.get('occupation'));
     this.$el.find('#alias').text(this.model.get('alias'));
   }
 
 });
 
-// Steps for View Five
-// m = new Backbone.Model(JSON.parse(someJson))
-// v = new viewFive({model: m})
-// v.render()
+$(function() {
+ // var v = new viewFive();
+ // v.render();
+});
