@@ -11,17 +11,13 @@ var aView = Backbone.View.extend({
  * Load in the browser, open the browser console.
  *
  * Enter the following into the console:
- * v = new theView();
+ * v = new aView();
  * v.render();
  *
  */
 
-var someJson = '{"name":"Walter White", "occupation":"Chemistry Teacher", "alias":"Heizenberg"}';
-var moreJson = '[' 
-  + '{"name": "Walter White", "occupation":"Chemistry Teacher", "alias":"Heizenberg"},'
-  + '{"name": "Gustavo Fring", "occupation":"Restaurateur", "alias":"Gus"},'
-  + '{"name": "Mike Ehrmantraut", "occupation":"Jack of Many", "alias":"Grandpa"}'
-+ ']';
+var someJson = '{"name":"Walter White", "occupation":"Chemistry Teacher", "alias":"Heisenberg"}';
+var moreJson = '[{"name": "Walter White", "occupation":"Chemistry Teacher", "alias":"Heisenberg"},{"name": "Gustavo Fring", "occupation":"Restaurateur", "alias":"Gus"},{"name": "Mike Ehrmantraut", "occupation":"Jack of Many", "alias":"Grandpa"}]';
 
 var viewTwo = Backbone.View.extend({
   initialize: function(){
