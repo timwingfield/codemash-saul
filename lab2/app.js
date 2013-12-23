@@ -17,6 +17,11 @@ var aView = Backbone.View.extend({
  */
 
 var someJson = '{"name":"Walter White", "occupation":"Chemistry Teacher", "alias":"Heizenberg"}';
+var moreJson = '[' 
+  + '{"name": "Walter White", "occupation":"Chemistry Teacher", "alias":"Heizenberg"},'
+  + '{"name": "Gustavo Fring", "occupation":"Restaurateur", "alias":"Gus"},'
+  + '{"name": "Mike Ehrmantraut", "occupation":"Jack of Many", "alias":"Grandpa"}'
++ ']';
 
 var viewTwo = Backbone.View.extend({
   initialize: function(){
@@ -61,3 +66,36 @@ var viewFour = Backbone.View.extend({
   }
 
 });
+
+var viewFive = Backbone.View.extend({
+  events: {
+    "click #showDetails": "showDetails",
+    "click .main": "blah"
+  },
+
+  initialize: function(){
+    _.bindAll(this, 'showDetails');             
+  },
+
+  render: function(){
+    var html = _.template($("#details").html(), this.model.toJSON());
+
+    $('.main').append(html);
+    
+    return this;
+  },
+
+  blah: function() { alert('blah'); },
+
+  showDetails: function(){
+    alert('showDetails');
+    this.$el.find('#occupation').text(this.model.get('occupation'));
+    this.$el.find('#alias').text(this.model.get('alias'));
+  }
+
+});
+
+// Steps for View Five
+// m = new Backbone.Model(JSON.parse(someJson))
+// v = new viewFive({model: m})
+// v.render()
