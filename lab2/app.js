@@ -1,97 +1,99 @@
-var aView = Backbone.View.extend({
-  render: function(){
-    $('.main').html('<h1>Hola Codemashers!</h1>');
-
-    return this;
-  }
-});
-
 /*
  *
- * Load in the browser, open the browser console.
- *
- * Enter the following into the console:
- * v = new aView();
- * v.render();
- *
+ * Some json variables to make life easier in the browser console.
+ * 
  */
 
 var someJson = '{"name":"Walter White", "occupation":"Chemistry Teacher", "alias":"Heisenberg"}';
-var moreJson = '[{"name": "Walter White", "occupation":"Chemistry Teacher", "alias":"Heisenberg"},{"name": "Gustavo Fring", "occupation":"Restaurateur", "alias":"Gus"},{"name": "Mike Ehrmantraut", "occupation":"Jack of Many", "alias":"Grandpa"}]';
 
-var viewTwo = Backbone.View.extend({
-  initialize: function(){
-    this.model = new Backbone.Model(JSON.parse(someJson));
-  },
+var moreJson = '[{"name": "Walter White", "occupation":"Chemistry Teacher", "alias":"Heisenberg"},' +
+                '{"name": "Jesse Pinkman", "occupation":"Assistant Cook", "alias":"Jesse Jackson"},' + 
+                '{"name": "Gustavo Fring", "occupation":"Restaurateur", "alias":"Gus"},' + 
+                '{"name": "Saul McGill", "occupation":"Criminal Defense Attorney", "alias":"Saul Goodman"},' + 
+                '{"name": "Walter White Jr.", "occupation":"Breakfast Eater", "alias":"Flynn"},' + 
+                '{"name": "Mike Ehrmantraut", "occupation":"Jack of Many", "alias":"Grandpa"}]';
 
-  render: function(){
-    $('.main')
-      .append('<p>Say my name.</p>')
-      .append('<p><b>You\'re ' + this.model.get('alias') + '.</b></p>');
 
-    return this;
-  }
-});
+var demoView = Backbone.View.extend({
+  el: '.main',
 
-var viewThree = Backbone.View.extend({
-  initialize: function(){
-    this.model = new Backbone.Model(JSON.parse(someJson));
-    this.model.on('change', this.render, this);
-  },
+  // events: {
+  //   "click #jesse-ize": "makeModelJesse" 
+  // add to template <div><button id="jesse-ize">Show Jesse</button></div>
+  // },
 
-  render: function(){
-    var theHtml = '<ul><li>Name: ' + this.model.get('name') + '</li><li>Occupation: ' + this.model.get('occupation') + '</li><li>Alias: ' + this.model.get('alias') + '</li>';
-
-    $('.main').html(theHtml);
-
-    return this;
-  }
-});
-
-var viewFour = Backbone.View.extend({
-  initialize: function(){
-    this.model = new Backbone.Model(JSON.parse(someJson));
-    this.model.on('change', this.render, this);
-  },
+  // initialize: function(){
+  //   this.model.on('change', this.render, this); 
+  // },
 
   render: function(){
-    var html = _.template($("#character").html(), this.model.toJSON());
-
-    $('.main').html(html);
-
+    var html = _.template($("#tread-lightly").html(), this.model.toJSON());
+    this.$el.html(html);
     return this;
-  }
+  },
 
+  // makeModelJesse: function(){
+  //   this.model.set({name: "Jesse Pinkman", occupation: "Assistant Cook", alias: "Cap'n Cook"});                
+  // }
 });
 
-var viewFive = Backbone.View.extend({
+
+/*
+ * Intro to Backbone.js Lab
+ *
+ * In this lab we're going to load a backbone collection
+ * and navigate the collection using two buttons.
+ *
+ *
+ * STEP 1:
+ *    - Create the collection in the console
+ *    - Pass the collection to the view when creating the view
+ *    - Call render on the view
+ *    - Have the first model in the collection render with the view
+ *
+ * STEP 2 (Refactor):
+ *    - Create the collection in the view's initialization function
+ *    - Set this.model to initally be Saul Goodman. (HINT: this.collection.findWhere)
+ *
+ * STEP 3:
+ *    - Create the next and previous events
+ *    - Create the next and previous functions
+ *    - Don't worry about "next at the last item" or "previous at the first item"
+ *
+ * BONUS:
+ *    - Disable the next button if at the last item
+ *    - Disable the previous button if at the first item
+ *
+ * DOUBLE SECRET BONUS:
+ *    - Go to the first item if next is clicked on the last item
+ *    - Go to the last item if previous is clicked on the first item 
+ *
+ */
+
+var labView = Backbone.View.extend({
   el: '.main',
 
   events: {
-    "click #showDetails": "showDetails",
-    "click .main": "blah"
+    // an event for both #previous and #next will be needed
   },
 
   initialize: function(){
-   this.model = new Backbone.Model(JSON.parse(someJson));
+    // set this.model equal to the first item in the collection
+    // bind to the model change event
   },
 
   render: function(){
-    var html = _.template($("#details").html(), this.model.toJSON());
-    $('.main').append(html);
+    var html = _.template($("#tread-lightly").html(), this.model.toJSON());
+    this.$el.html(html);
     return this;
   },
 
-  blah: function() { alert('blah'); },
+  nextPerson: function(){
+    // HINT: this.collection.indexOf(this.model)
+  },
 
-  showDetails: function(){
-    this.$el.find('#occupation').text(this.model.get('occupation'));
-    this.$el.find('#alias').text(this.model.get('alias'));
+  previousPerson: function(){
+    // HINT: this.collection.indexOf(this.model)
   }
 
-});
-
-$(function() {
- // var v = new viewFive();
- // v.render();
 });

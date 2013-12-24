@@ -10,7 +10,7 @@
     <script type="text/javascript" src="app.js"></script>
   </body>
 
-  <script type="text/template" id="character">
+  <script type="text/template" id="tread-lightly">
     <ul>
       <li>Name: <%= name %></li>
       <li>Occupation: <%= occupation %></li>
@@ -18,12 +18,15 @@
     </ul>
   </script>
 
-  <script type="text/template" id="details">
+  <script type="text/template" id="fat-stacks-yo">
     <h2><%= name %></h2>
-    <div><input type='button' id="showDetails" value="show details"></div>
+    <ul>
+      <li>Occupation: <%= occupation %></li>
+      <li>Alias: <%= alias %></li>
+    </ul>
     <div>
-      <div id="occupation"></div>
-      <div id="alias"></div>
+      <button id="previous"><< Previous</button>
+      <button id="next">Next >></button>
     </div>
   </script>
 </html>
