@@ -17,14 +17,13 @@ var moreJson = '[{"name": "Walter White", "occupation":"Chemistry Teacher", "ali
 var demoView = Backbone.View.extend({
   el: '.main',
 
-  // events: {
-  //   "click #jesse-ize": "makeModelJesse" 
-  // add to template <div><button id="jesse-ize">Show Jesse</button></div>
-  // },
+  events: {
+    "click #jesse-ize": "makeModelJesse" 
+  },
 
-  // initialize: function(){
-  //   this.model.on('change', this.render, this); 
-  // },
+  initialize: function(){
+    this.model.on('change', this.render, this); 
+  },
 
   render: function(){
     var html = _.template($("#tread-lightly").html(), this.model.toJSON());
@@ -32,9 +31,9 @@ var demoView = Backbone.View.extend({
     return this;
   },
 
-  // makeModelJesse: function(){
-  //   this.model.set({name: "Jesse Pinkman", occupation: "Assistant Cook", alias: "Cap'n Cook"});                
-  // }
+  makeModelJesse: function(){
+    this.model.set({name: "Jesse Pinkman", occupation: "Assistant Cook", alias: "Cap'n Cook"});                
+  }
 });
 
 
@@ -54,6 +53,7 @@ var demoView = Backbone.View.extend({
  * STEP 2 (Refactor):
  *    - Create the collection in the view's initialization function
  *    - Set this.model to initally be Saul Goodman. (HINT: this.collection.findWhere)
+ *    - Call render in the initialization function
  *
  * STEP 3:
  *    - Create the next and previous events
@@ -75,25 +75,39 @@ var labView = Backbone.View.extend({
 
   events: {
     // an event for both #previous and #next will be needed
+    "click #next" : "nextPerson",
+    "click #previous" : "previousPerson"
   },
 
   initialize: function(){
-    // set this.model equal to the first item in the collection
+    this.collection = new Backbone.Collection(JSON.parse(moreJson));
+    this.model = this.collection.findWhere({name: "Saul McGill"});
     // bind to the model change event
+    _.bindAll(this, 'render');
+    this.model.on('change', this.render, this); 
+    this.render();
   },
 
   render: function(){
-    var html = _.template($("#tread-lightly").html(), this.model.toJSON());
+    var html = _.template($("#fat-stacks-yo").html(), this.model.toJSON());
     this.$el.html(html);
     return this;
   },
 
+
+  //WTF? Change is not firing on these two
   nextPerson: function(){
     // HINT: this.collection.indexOf(this.model)
+    var currentIndex = this.collection.indexOf(this.model);
+    this.model = this.collection.at(currentIndex - 1);
+    this.render();
   },
 
   previousPerson: function(){
     // HINT: this.collection.indexOf(this.model)
+    var currentIndex = this.collection.indexOf(this.model);
+    this.model = this.collection.at(currentIndex + 1);
+    this.render();
   }
 
 });
