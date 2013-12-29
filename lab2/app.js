@@ -83,7 +83,7 @@ var labView = Backbone.View.extend({
   },
 
   render: function(){
-    var html = _.template($("#tread-lightly").html(), this.model.toJSON());
+    var html = _.template($("#fat-stacks-yo").html(), this.model.toJSON());
     this.$el.html(html);
     return this;
   },
