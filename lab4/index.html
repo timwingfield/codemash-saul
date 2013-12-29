@@ -8,5 +8,22 @@
     <script type="text/javascript" src="../assets/javascript/jquery-min.js"></script>
     <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      var loadCountries;
+      loadCountries = function(countries){
+        _.each(countries, function(country){
+          html  = '<div class="property-card" data-id="' + country.alpha2Code + '">';
+          html += '<ul>';
+          html += '<li>' + country.name + '</li>';
+          html += '<li>' + country.currency + '</li>';
+          html += '<li>' + country.population + '</li>';
+          html += '</ul>';
+          html += '</div>';
+
+          $('#list-of-countries').append(html);
+        });
+
+
+    </script>
   </body>
 </html>
