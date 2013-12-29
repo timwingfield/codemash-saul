@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Walter White Labs</title> 
+  </head>
+  <body>
+    <div class="main">
+      <h2>Saul's Relocation Possibilities</h2>
+      <div id="list-of-countries"></div>
+      <div id="details">
+        <ul>
+          <li><span>Currency Code:</span><span id="currency"></span></li>
+          <li><span>Language Code:</span><span id="language"></span></li>
+          <li><span>Distance from ABQ:</span><span id="distance"></span></li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript" src="../assets/javascript/underscore-min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/jquery-min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+      var loadCountries, countryDetails;
+
+      loadCountries = function(countries){
+        _.each(countries, function(country){
+          html  = '<div class="property-card" data-id="' + country.alpha2Code + '">';
+          html += '<span>' + country.name + '</span>';
+          html += '<button class="country-details" data-id="' + country.alpha2Code + '">View Details</button>';
+          html += '</div>';
+
+          $('#list-of-countries').append(html);
+        });
+        
+      };
+
+      countryDetails = function(countryCode){
+        $('#details').show();
+
+        $('#currency').text('Pesos');
+        $('#language').text('Canadian');
+        $('#distance').text('3 parsecs');
+      };
+
+      $("#list-of-countries").on('click', 'button.country-details', function(){ countryDetails($(this).data('id')); });
+
+
+      $(function(){
+        $('#details').hide();
+        $.get('http://restcountries.eu/rest/alpha?codes=mx;no;nz;tz;aw', loadCountries);
+      });
+    </script>
+  </body>
+</html>
