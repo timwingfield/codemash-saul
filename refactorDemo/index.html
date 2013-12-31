@@ -8,9 +8,9 @@
       <div id="list-of-countries"></div>
       <div id="details">
         <ul>
-          <li><span>Currency Code:</span><span id="currency"></span></li>
-          <li><span>Language Code:</span><span id="language"></span></li>
-          <li><span>Distance from ABQ:</span><span id="distance"></span></li>
+          <li><span>Currency Code: </span><span id="currency"></span></li>
+          <li><span>Language Code: </span><span id="language"></span></li>
+          <li><span>Distance from ABQ: </span><span id="distance"></span></li>
         </ul>
       </div>
     </div>
@@ -19,9 +19,10 @@
     <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript">
-      var loadCountries, countryDetails;
+      var loadCountries, countries, countryDetails;
 
-      loadCountries = function(countries){
+      loadCountries = function(data){
+        countries = data;
         _.each(countries, function(country){
           html  = '<div class="property-card" data-id="' + country.alpha2Code + '">';
           html += '<span>' + country.name + '</span>';
@@ -36,8 +37,10 @@
       countryDetails = function(countryCode){
         $('#details').show();
 
-        $('#currency').text('Pesos');
-        $('#language').text('Canadian');
+        var selectedCountry = _.findWhere(countries, {alpha2Code: countryCode});
+
+        $('#currency').text(selectedCountry.currency);
+        $('#language').text(selectedCountry.languages);
         $('#distance').text('3 parsecs');
       };
 
