@@ -12,6 +12,21 @@
       </div>
     </script>
 
+    <script type="text/template" id="country-details">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= name %></h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li><span>Currency Code: </span><span class="details-value" id="currency"><%= currency %></span></li>
+            <li><span>Language Code: </span><span class="details-value" id="language"><%= languages %></span></li>
+            <li><span>Distance from ABQ: </span><span class="details-value" id="distance"><%= distanceFromAbq %></span></li>
+          </ul>
+        </div>
+      </div>
+    </script>
+
   </head>
   <body>
     <div class="container">
@@ -24,20 +39,7 @@
         </div>
         
         <div class="col-lg-6">
-          <div id="details">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title"></h3>
-              </div>
-              <div class="panel-body">
-                <ul>
-                  <li><span>Currency Code: </span><span class="details-value" id="currency"></span></li>
-                  <li><span>Language Code: </span><span class="details-value" id="language"></span></li>
-                  <li><span>Distance from ABQ: </span><span class="details-value" id="distance"></span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div id="details"></div>
         </div>
       </div>
     </div>
@@ -75,23 +77,7 @@
         }
       })();
       
-      countryDetails = function(countryCode){
-        $('#details').show();
-
-        var selectedCountry = _.findWhere(countries, {alpha2Code: countryCode}),
-            geoPoint = {lat: selectedCountry.latlng[0], lng: selectedCountry.latlng[1]},
-            theAbq = {lat: 35.1107, lng: -106.6100};
-
-        $('.panel-title').text(selectedCountry.name);
-        $('#currency').text(selectedCountry.currency);
-        $('#language').text(selectedCountry.languages);
-        $('#distance').text(distanceHaversine.distance(theAbq, geoPoint) + " miles");
-      };
-
-      $("#list-of-countries").on('click', 'button.country-details', function(){ countryDetails($(this).data('id')); });
-
       $(function(){
-        $('#details').hide();
         new CountriesView({el: "#list-of-countries"});
       });
     </script>
