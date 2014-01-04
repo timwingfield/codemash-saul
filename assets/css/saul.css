@@ -7,12 +7,12 @@ body {
   min-height: 600px;
 }
 
-.jumbotron {
+.saul {
   margin-top: 15px;
   background-image: url("../images/better-call-saul.png");
 }
 
-.jumbotron h2 {
+.saul h2 {
   top: 59px;
   position: relative;
   left: 140px;
@@ -24,7 +24,7 @@ body {
 .footer {
   width: 730px;
   margin: auto;
-  color: #ddd;
+  color: #888;
 }
 
 .property-card {
