@@ -1,0 +1,54 @@
+body {
+  background-image: url("../images/breaking-bad-background.png");
+}
+
+.container {
+  background-color: #fff;
+  min-height: 600px;
+}
+
+.jumbotron {
+  margin-top: 15px;
+  background-image: url("../images/better-call-saul.png");
+}
+
+.jumbotron h2 {
+  top: 59px;
+  position: relative;
+  left: 140px;
+  color: ccc;
+  background: rgba(0, 0, 0, 0.4);
+  width: 500px;
+}
+
+.footer {
+  width: 730px;
+  margin: auto;
+  color: #ddd;
+}
+
+.property-card {
+  margin: 4px;
+}
+
+.property-card span {
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+  font-size: 1.6em;
+  margin-right: 10px;
+}
+
+#details {
+  margin-top: 30px;
+}
+
+#details ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+#details ul li span.details-value {
+  font-weight: bold;
+  margin: 10px;
+}

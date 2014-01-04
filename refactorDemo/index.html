@@ -1,19 +1,44 @@
 <html>
   <head>
     <title>Walter White Labs</title> 
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/jumbotron-narrow.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/saul.css" type="text/css" />
   </head>
   <body>
-    <div class="main">
-      <h2>Saul's Relocation Possibilities</h2>
-      <div id="list-of-countries"></div>
-      <div id="details">
-        <ul>
-          <li><span>Currency Code: </span><span id="currency"></span></li>
-          <li><span>Language Code: </span><span id="language"></span></li>
-          <li><span>Distance from ABQ: </span><span id="distance"></span></li>
-        </ul>
+    <div class="container">
+      <div class="jumbotron">
+
+        <h2>Saul's Relocation Possibilities</h2>
+      </div>
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <div id="list-of-countries"></div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div id="details">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <li><span>Currency Code: </span><span class="details-value" id="currency"></span></li>
+                  <li><span>Language Code: </span><span class="details-value" id="language"></span></li>
+                  <li><span>Distance from ABQ: </span><span class="details-value" id="distance"></span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="footer">
+      <p>&copy; 2013 Ice Station Zebra Associates</p>
+    </div>
+
     <script type="text/javascript" src="../assets/javascript/underscore-min.js"></script>
     <script type="text/javascript" src="../assets/javascript/jquery-min.js"></script>
     <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
@@ -47,7 +72,7 @@
         _.each(countries, function(country){
           html  = '<div class="property-card" data-id="' + country.alpha2Code + '">';
           html += '<span>' + country.name + '</span>';
-          html += '<button class="country-details" data-id="' + country.alpha2Code + '">View Details</button>';
+          html += '<button class="btn btn-xs btn-info country-details" data-id="' + country.alpha2Code + '">View Details</button>';
           html += '</div>';
 
           $('#list-of-countries').append(html);
@@ -62,6 +87,7 @@
             geoPoint = {lat: selectedCountry.latlng[0], lng: selectedCountry.latlng[1]},
             theAbq = {lat: 35.1107, lng: -106.6100};
 
+        $('.panel-title').text(selectedCountry.name);
         $('#currency').text(selectedCountry.currency);
         $('#language').text(selectedCountry.languages);
         $('#distance').text(distanceHaversine.distance(theAbq, geoPoint) + " miles");
