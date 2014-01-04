@@ -4,6 +4,14 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../assets/css/jumbotron-narrow.css" type="text/css" />
     <link rel="stylesheet" href="../assets/css/saul.css" type="text/css" />
+
+    <script type="text/template" id="country">
+      <div class="property-card" data-id="<%= alpha2Code %>">
+        <span><%= name %></span>
+        <button class="btn btn-xs btn-info country-details" data-id="<%= alpha2Code %>">View Details</button>
+      </div>
+    </script>
+
   </head>
   <body>
     <div class="container">
@@ -42,8 +50,10 @@
     <script type="text/javascript" src="../assets/javascript/jquery-min.js"></script>
     <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+
+
     <script type="text/javascript">
-      var loadCountries, countries, countryDetails, distanceHaversine;
+      var countries, countryDetails, distanceHaversine;
 
       distanceHaversine = (function() {
         rad = function(x) { return x*Math.PI/180; }
@@ -65,20 +75,6 @@
         }
       })();
       
-
-      loadCountries = function(data){
-        countries = data;
-        _.each(countries, function(country){
-          html  = '<div class="property-card" data-id="' + country.alpha2Code + '">';
-          html += '<span>' + country.name + '</span>';
-          html += '<button class="btn btn-xs btn-info country-details" data-id="' + country.alpha2Code + '">View Details</button>';
-          html += '</div>';
-
-          $('#list-of-countries').append(html);
-        });
-        
-      };
-
       countryDetails = function(countryCode){
         $('#details').show();
 
@@ -96,7 +92,7 @@
 
       $(function(){
         $('#details').hide();
-        $.get('http://restcountries.eu/rest/alpha?codes=mx;no;nz;tz;aw', loadCountries);
+        new CountriesView({el: "#list-of-countries"});
       });
     </script>
   </body>
