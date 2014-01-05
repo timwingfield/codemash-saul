@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Walter White Labs</title> 
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/jumbotron-narrow.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/saul.css" type="text/css" />
+
+    <script type="text/template" id="country">
+      <div class="property-card" data-id="<%= alpha2Code %>">
+        <span><%= name %></span>
+        <button class="btn btn-xs btn-info country-details" data-id="<%= alpha2Code %>">View Details</button>
+      </div>
+    </script>
+
+    <script type="text/template" id="country-details">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= name %></h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li><span>Currency Code: </span><span class="details-value" id="currency"><%= currency %></span></li>
+            <li><span>Language Code: </span><span class="details-value" id="language"><%= languages %></span></li>
+            <li><span>Distance from ABQ: </span><span class="details-value" id="distance"><%= distanceFromAbq %></span></li>
+          </ul>
+        </div>
+      </div>
+    </script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron saul">
+        <h2>Saul's Relocation Possibilities</h2>
+      </div>
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <div id="list-of-countries"></div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div id="details"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2013 Ice Station Zebra Associates</p>
+    </div>
+
+    <script type="text/javascript" src="../assets/javascript/underscore-min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/jquery-min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+
+    <script type="text/javascript">
+      $(function(){
+        new CountriesView({el: "#list-of-countries"});
+      });
+    </script>
+  </body>
+</html>
