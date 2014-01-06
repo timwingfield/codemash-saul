@@ -21,6 +21,19 @@ body {
   width: 500px;
 }
 
+.heisenberg {
+  margin-top: 15px;
+  background-image: url("../images/heisenberg.png");
+}
+
+.heisenberg h3 {
+  position: relative;
+  color: #333;
+  width: 360px;
+  top: 46px;
+  left: 32px;
+}
+
 .footer {
   width: 730px;
   margin: auto;
@@ -51,4 +64,26 @@ body {
 #details ul li span.details-value {
   font-weight: bold;
   margin: 10px;
+}
+
+.country-search input.input-lg {
+  font-size: 1.6em;
+}
+
+.country-search button.btn {
+  padding: 6px 28px;
+  font-size: 1.6em;
+}
+
+#map {
+  width: 314px;
+  height: 350px;
+}
+
+#map h4 {
+  text-align: center;
+  font-weight: bold;
+  color: #aaa;
+  font-size: 2.1em;
+  margin-top: 150px;
 }
