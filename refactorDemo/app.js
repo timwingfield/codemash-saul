@@ -63,7 +63,7 @@ var CountryView = Backbone.View.extend({
   template: _.template($('#country').html()),
 
   events: {
-    'click' : 'selectCountry'
+    'click button' : 'selectCountry'
   },
 
   render: function() {
