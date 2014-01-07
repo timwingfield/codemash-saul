@@ -87,3 +87,43 @@ body {
   font-size: 2.1em;
   margin-top: 150px;
 }
+
+.country-card {
+  border: solid 1px #ccc;
+  margin: 8px 0 8px 0;
+}
+
+.country-card SPAN {
+  display: inline-block;
+}
+
+.country-card .code {
+  width: 58px;
+  font-size: 1.4em;
+  text-align: center;
+  padding: 7px;
+  background-color: #eee;
+  margin: 5px;
+  vertical-align: top;
+}
+
+.country-card .details {
+}
+
+.country-card .details SPAN {
+  display: block;
+  width: 192px;
+  font-style: italic;
+  font-size: .8em;
+}
+
+.country-card .details SPAN.name {
+  font-weight: bold;
+  font-size: 1.2em;
+  font-style: normal;
+}
+
+.country-card .map-it-button {
+  vertical-align: top;
+  margin: 5px 0 4px 0;
+}
