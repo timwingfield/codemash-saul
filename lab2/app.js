@@ -17,24 +17,12 @@ var moreJson = '[{"name": "Walter White", "occupation":"Chemistry Teacher", "ali
 var demoView = Backbone.View.extend({
   el: '.main',
 
-  // events: {
-  //   "click #jesse-ize": "makeModelJesse" 
-  // add to template <div><button id="jesse-ize">Show Jesse</button></div>
-  // },
-
-  // initialize: function(){
-  //   this.model.on('change', this.render, this); 
-  // },
-
   render: function(){
     var html = _.template($("#tread-lightly").html(), this.model.toJSON());
     this.$el.html(html);
     return this;
-  },
+  }
 
-  // makeModelJesse: function(){
-  //   this.model.set({name: "Jesse Pinkman", occupation: "Assistant Cook", alias: "Cap'n Cook"});                
-  // }
 });
 
 
