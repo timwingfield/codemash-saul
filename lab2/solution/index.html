@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Intro to Backbone Lab</title> 
+  </head>
+  <body>
+    <div class="main"></div>
+    <script type="text/javascript" src="../assets/javascript/underscore-min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/jquery-min.js"></script>
+    <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+
+  <script type="text/template" id="tread-lightly">
+    <ul>
+      <li>Name: <%= name %></li>
+      <li>Occupation: <%= occupation %></li>
+      <li>Alias: <%= alias %></li>
+    </ul>
+    <div><button id="jesse-ize">Show Jesse</button></div>
+  </script>
+
+  <script type="text/template" id="fat-stacks-yo">
+    <h2><%= name %></h2>
+    <ul>
+      <li>Occupation: <%= occupation %></li>
+      <li>Alias: <%= alias %></li>
+    </ul>
+    <div>
+      <button id="previous"><< Previous</button>
+      <button id="next">Next >></button>
+    </div>
+  </script>
+</html>
