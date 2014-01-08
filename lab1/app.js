@@ -1,6 +1,6 @@
 $(function() {
 
-  // Lab 1
+  // Question 1
   // FizzBuzz
   //
   // for 1 to 30
@@ -16,14 +16,14 @@ $(function() {
     $('#fizzbuzz-results').append(output);
   });
 
-  // Lab 2
+  // Question 2
   //
   // fix the avoidCops function in the Evasion object and log/alert the result
   $('#lab-2').on('click', function() {
     alert(Evasion.avoidCops());
   });
 
-  // Lab 3
+  // Question 3
   //
   // Call the knocks function in the Messages object
   $("#lab-3").on('click', function() {
@@ -32,10 +32,11 @@ $(function() {
 
 var Evasion = {
   avoidCops: function() {
-    for (var i = 0; i <= 10; i++) {
-      var loop = 'Cops avoided again!';
+    if (true) {
+      var message = 'Cops avoided again!';
     }
   }
+  // this function should return the message
 };
 
 var Messages = {
