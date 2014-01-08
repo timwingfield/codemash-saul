@@ -18,7 +18,7 @@ $(function() {
 
   // Question 2
   //
-  // fix the avoidCops function in the Evasion object and log/alert the result
+  // fix the avoidCops function in the Evasion object
   $('#lab-2').on('click', function() {
     alert(Evasion.avoidCops());
   });
@@ -37,6 +37,7 @@ var Evasion = {
     }
   }
   // this function should return the message
+  // where should the return statement go?
 };
 
 var Messages = {
