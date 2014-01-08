@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="../../assets/css/jumbotron-narrow.css" type="text/css" />
     <link rel="stylesheet" href="../../assets/css/saul.css" type="text/css" />
 
-
     <script type="text/template" id="search">
       <div class="col-lg-9">
         <input type="text" class="input-lg form-control country-name" placeholder="Search for a Country...">
@@ -66,63 +65,8 @@
     <script type="text/javascript" src="app.js"></script>
 
     <script type="text/javascript">
-/*
-      var countrySearch, countries, displayCountries, showMap;
-
-      countrySearch = function() {
-        var countryName = $('.country-name').val();
-        $.get('http://restcountries.eu/rest/name/' + countryName, displayCountries);
-      }
-
-      displayCountries = function(data){
-        var html = "";
-
-        countries = data
-
-        _.each(countries, function(country){
-          html += '<div class="country-card" data-id="' + country.alpha2Code + '">';
-          html += '<span class="code"><span>' + country.alpha3Code+ '</span></span>';
-          html += '<span class="details">';
-          html += '<span class="name">' + country.name + '</span>';
-          html += '<span>Currency: ' + country.currency + '</span>';
-          html += '<span>Population: ' + country.population + '</span>';
-          html += '<span>Languages: ' + country.languages + '</span>';
-          html += '</span>';
-          html += '<span class="map-it-button"><button class="btn btn-xs btn-info map-it" data-id="' + country.alpha2Code + '">Map It</button></span>';
-          html += '</div>';
-
-        });
-
-        $('#list-of-countries').html(html);
-      }
-
-      showMap = function(countryCode){
-        var selectedCountry = _.findWhere(countries, {alpha2Code: countryCode}),
-            lat = selectedCountry.latlng[0],
-            lng = selectedCountry.latlng[1],
-            mapCanvas = document.getElementById('map'),
-            mapOptions = {
-              center: new google.maps.LatLng(lat, lng),
-              zoom: 4,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-
-        if(lat && lng) {
-          var map = new google.maps.Map(mapCanvas, mapOptions);
-        }else{
-          $("#map").html("<h4>Map Unavailable<h4>");
-        }
-      }
-
-      $('.country-search-button').on('click', countrySearch);
-      $('#list-of-countries').on('click', 'button.map-it', function(){ showMap($(this).data('id')); });
-      */
-
-    </script>
-    <script type="text/javascript">
       $(function(){
         new SearchView({el: ".country-search"});
-        //new CountriesView({el: "#list-of-countries"});
       });
     </script>
   </body>
