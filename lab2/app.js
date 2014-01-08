@@ -41,7 +41,7 @@ var demoView = Backbone.View.extend({
  *
  * STEP 2 (Refactor):
  *    - Create the collection in the view's initialization function
- *    - Set this.model to initally be Saul Goodman. (HINT: this.collection.findWhere)
+ *    - Set this.model to initially be Saul Goodman. (HINT: this.collection.findWhere)
  *
  * STEP 3:
  *    - Create the next and previous events
