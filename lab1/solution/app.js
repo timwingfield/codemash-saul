@@ -33,7 +33,7 @@ $(function() {
 });
 
 var FizzBuzz = {
-  calculate: function fizzBuzz() {
+  calculate: function() {
     var output = '';
 
     for (var i = 1; i <= 30; i++) {
