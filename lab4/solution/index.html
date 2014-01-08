@@ -4,29 +4,30 @@
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../../assets/css/jumbotron-narrow.css" type="text/css" />
     <link rel="stylesheet" href="../../assets/css/saul.css" type="text/css" />
+
+
+    <script type="text/template" id="search">
+      <div class="col-lg-9">
+        <input type="text" class="input-lg form-control country-name" placeholder="Search for a Country...">
+      </div>
+      <div class="col-lg-3">
+        <button class="btn btn-primary country-search-button">Search</button>
+      </div>
+    </script>
+
+    <script type="text/template" id="country">
+      <div class="country-card" data-id="<%= alpha2Code %>">
+        <span class="code"><span><%= alpha3Code %></span></span>
+        <span class="details">
+          <span class="name"><%= name %></span>
+          <span>Currency: <%= currency %></span>
+          <span>Population: <%= population %></span>
+          <span>Languages: <%= languages %></span>
+        </span>
+        <span class="map-it-button"><button class="btn btn-xs btn-info map-it" data-id="<%= alpha2Code %>">Map It</button></span>
+      </div>
+    </script>
   </head>
-
-  <script type="text/template" id="search">
-    <div class="col-lg-9">
-      <input type="text" class="input-lg form-control country-name" placeholder="Search for a Country...">
-    </div>
-    <div class="col-lg-3">
-      <button class="btn btn-primary country-search-button">Search</button>
-    </div>
-  </script>
-
-  <script type="text/template" id="country">
-    <div class="country-card" data-id="<%= alpha2Code %>">
-      <span class="code"><span><%= alpha3Code %></span></span>
-      <span class="details">
-        <span class="name"><%= name %></span>
-        <span>Currency: <%= currency %></span>
-        <span>Population: <%= population %></span>
-        <span>Languages: <%= languages %></span>
-      </span>
-      <span class="map-it-button"><button class="btn btn-xs btn-info map-it" data-id="<%= alpha2Code %>">Map It</button></span>
-    </div>
-  </script>
 
   <body>
     <div class="container">
@@ -42,6 +43,7 @@
         </div>
       </div>
       <div class="row marketing">
+
         <div class="col-lg-6">
           <div id="list-of-countries"></div>
         </div>
@@ -50,6 +52,7 @@
           <div id="map"></div>
         </div>
       </div>
+
     </div>
 
     <div class="footer">
@@ -118,7 +121,8 @@
     </script>
     <script type="text/javascript">
       $(function(){
-        new CountriesView({el: "#list-of-countries"});
+        new SearchView({el: ".country-search"});
+        //new CountriesView({el: "#list-of-countries"});
       });
     </script>
   </body>
