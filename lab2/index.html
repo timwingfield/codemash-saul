@@ -8,6 +8,7 @@
     <script type="text/javascript" src="../assets/javascript/jquery-min.js"></script>
     <script type="text/javascript" src="../assets/javascript/backbone-min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
   </body>
 
   <script type="text/template" id="tread-lightly">
@@ -24,9 +25,10 @@
       <li>Occupation: <%= occupation %></li>
       <li>Alias: <%= alias %></li>
     </ul>
+    <h3>Whereabouts: <%= whereabouts %></h3>
     <div>
-      <button id="previous"><< Previous</button>
-      <button id="next">Next >></button>
+      <input id="whereabouts" placeholder="Where's Walter?">
+      <button id="add-whereabouts">Add Whereabouts</button>
     </div>
   </script>
 </html>
