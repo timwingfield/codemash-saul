@@ -4,29 +4,29 @@
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../../assets/css/jumbotron-narrow.css" type="text/css" />
     <link rel="stylesheet" href="../../assets/css/saul.css" type="text/css" />
+
+    <script type="text/template" id="search">
+      <div class="col-lg-9">
+        <input type="text" class="input-lg form-control country-name" placeholder="Search for a Country...">
+      </div>
+      <div class="col-lg-3">
+        <button class="btn btn-primary country-search-button">Search</button>
+      </div>
+    </script>
+
+    <script type="text/template" id="country">
+      <div class="country-card" data-id="<%= alpha2Code %>">
+        <span class="code"><span><%= alpha3Code %></span></span>
+        <span class="details">
+          <span class="name"><%= name %></span>
+          <span>Currency: <%= currency %></span>
+          <span>Population: <%= population %></span>
+          <span>Languages: <%= languages %></span>
+        </span>
+        <span class="map-it-button"><button class="btn btn-xs btn-info map-it" data-id="<%= alpha2Code %>">Map It</button></span>
+      </div>
+    </script>
   </head>
-
-  <script type="text/template" id="search">
-    <div class="col-lg-9">
-      <input type="text" class="input-lg form-control country-name" placeholder="Search for a Country...">
-    </div>
-    <div class="col-lg-3">
-      <button class="btn btn-primary country-search-button">Search</button>
-    </div>
-  </script>
-
-  <script type="text/template" id="country">
-    <div class="country-card" data-id="<%= alpha2Code %>">
-      <span class="code"><span><%= alpha3Code %></span></span>
-      <span class="details">
-        <span class="name"><%= name %></span>
-        <span>Currency: <%= currency %></span>
-        <span>Population: <%= population %></span>
-        <span>Languages: <%= languages %></span>
-      </span>
-      <span class="map-it-button"><button class="btn btn-xs btn-info map-it" data-id="<%= alpha2Code %>">Map It</button></span>
-    </div>
-  </script>
 
   <body>
     <div class="container">
@@ -34,22 +34,24 @@
         <h3>Exporting and Logistics Division</h3>
       </div>
       <div class="row controls country-search">
-        <div class="col-lg-9">
+        <div class="col-sm-9">
           <input type="text" class="input-lg form-control country-name" placeholder="Search for a Country...">
         </div>
-        <div class="col-lg-3">
+        <div class="col-sm-3">
           <button class="btn btn-primary country-search-button">Search</button>
         </div>
       </div>
       <div class="row marketing">
-        <div class="col-lg-6">
+
+        <div class="col-sm-6">
           <div id="list-of-countries"></div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-sm-6">
           <div id="map"></div>
         </div>
       </div>
+
     </div>
 
     <div class="footer">
@@ -63,62 +65,8 @@
     <script type="text/javascript" src="app.js"></script>
 
     <script type="text/javascript">
-/*
-      var countrySearch, countries, displayCountries, showMap;
-
-      countrySearch = function() {
-        var countryName = $('.country-name').val();
-        $.get('http://restcountries.eu/rest/name/' + countryName, displayCountries);
-      }
-
-      displayCountries = function(data){
-        var html = "";
-
-        countries = data
-
-        _.each(countries, function(country){
-          html += '<div class="country-card" data-id="' + country.alpha2Code + '">';
-          html += '<span class="code"><span>' + country.alpha3Code+ '</span></span>';
-          html += '<span class="details">';
-          html += '<span class="name">' + country.name + '</span>';
-          html += '<span>Currency: ' + country.currency + '</span>';
-          html += '<span>Population: ' + country.population + '</span>';
-          html += '<span>Languages: ' + country.languages + '</span>';
-          html += '</span>';
-          html += '<span class="map-it-button"><button class="btn btn-xs btn-info map-it" data-id="' + country.alpha2Code + '">Map It</button></span>';
-          html += '</div>';
-
-        });
-
-        $('#list-of-countries').html(html);
-      }
-
-      showMap = function(countryCode){
-        var selectedCountry = _.findWhere(countries, {alpha2Code: countryCode}),
-            lat = selectedCountry.latlng[0],
-            lng = selectedCountry.latlng[1],
-            mapCanvas = document.getElementById('map'),
-            mapOptions = {
-              center: new google.maps.LatLng(lat, lng),
-              zoom: 4,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-
-        if(lat && lng) {
-          var map = new google.maps.Map(mapCanvas, mapOptions);
-        }else{
-          $("#map").html("<h4>Map Unavailable<h4>");
-        }
-      }
-
-      $('.country-search-button').on('click', countrySearch);
-      $('#list-of-countries').on('click', 'button.map-it', function(){ showMap($(this).data('id')); });
-      */
-
-    </script>
-    <script type="text/javascript">
       $(function(){
-        new CountriesView({el: "#list-of-countries"});
+        new SearchView({el: ".country-search"});
       });
     </script>
   </body>

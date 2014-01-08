@@ -3,48 +3,57 @@ var Country = Backbone.Model.extend({
 
 var Countries = Backbone.Collection.extend({
   model: Country,
-  initialize: function(query) {
-    this.url = 'http://restcountries.eu/rest/';
-  }
-});
 
-var CountryView = Backbone.View.extend({
-  template: _.template($('#country').html()),
-
-  events: {
-    'click button' : 'selectCountry'
-  },
-
-  render: function() {
-    html = this.template(this.model.toJSON());
-    this.$el.append(html);
-    return this;
+  constructQuery: function(query) {
+    this.url = 'http://restcountries.eu/rest/name/' + query;
   }
 });
 
 var SearchView = Backbone.View.extend({
   template: _.template($('#search').html()),
 
+  initialize: function() {
+    this.collection = new Countries();
+    this.collection.on('reset', this.render, this);
+  },
+
   events: {
-    'click #country-search-button': 'search'
+    'click .country-search-button': 'search'
   },
 
   render: function() {
-    html = this.template();
-    this.$el.append(html);
+    view = new CountriesView({collection: this.collection});
+    view.render();
     return this;
   },
 
   search: function() {
+    var query = this.$el.find('.country-name').val();
+    this.collection.constructQuery(query);
+    this.collection.fetch({reset: true});
   }
 });
 
 var CountriesView = Backbone.View.extend({
+  el: '#list-of-countries',
+
+  render: function() {
+    this.$el.empty();
+
+    this.collection.each(function(m) {
+      var view = new CountryView({model: m});
+      this.$el.append(view.render().el);
+    }, this);
+
+    return this;
+  }
+});
+
+var CountryView = Backbone.View.extend({
+  template: _.template($('#country').html()),
+
   initialize: function() {
     _.bindAll(this, 'render');
-    this.collection = new Countries();
-    this.collection.on('reset', this.render, this);
-    this.collection.fetch({reset: true});
   },
 
   events: {
@@ -52,18 +61,13 @@ var CountriesView = Backbone.View.extend({
   },
 
   render: function() {
-    this.collection.each(function(m){
-      v = new CountryView({model: m});
-      this.$el.append(v.render().el);
-    }, this);
-
+    html = this.template(this.model.toJSON());
+    this.$el.append(html);
     return this;
   },
 
   map: function(e) {
-    var id = $(e.target).data('id');
-    var selectCountry = this.collection.where({alpha2Code: id})[0];
-    new CountryDetailView({model: selectCountry}).render();
+    new CountryDetailView({model: this.model}).render();
   }
 });
 
@@ -80,9 +84,8 @@ var CountryDetailView = Backbone.View.extend({
 
     if (lat && lng) {
       var map = new google.maps.Map(this.el, mapOptions);
-    } else{
-      $(this.el).html("<h4>Map Unavailable<h4>");
+    } else {
+      this.$el.html("<h4>Map Unavailable<h4>");
     }
   }
 });
-
